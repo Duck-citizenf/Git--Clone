@@ -36,7 +36,7 @@ _C.style.setProperty('--n', N);
 
 window.addEventListener("resize", mobile);
 function mobile(){
-  if (screen.width < 767){
+  if (screen.width > 767){
     document.querySelector('.container').removeEventListener('mousedown', lock, false);
     document.querySelector('.container').removeEventListener('touchstart', lock, false);
     document.querySelector('.container').removeEventListener('mousemove', drag, false);
