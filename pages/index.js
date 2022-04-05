@@ -1,17 +1,7 @@
-import Image from 'next/image'
 import Script from 'next/script'
 import Footer from '../Components/Footer'
 import Nav from '../Components/Nav'
-import Link from 'next/link'
-// import spirituosen from '../images/spirituosen.png'
-// import chillout from '../images/getraenke-chillout.jpg'
-// import maritim from '../images/meer-gin-maritim.png'
-// import promo from '../images/newsletter-promo.png'
-// import Juniper from '../images/Laori-Juniper-Gin-Höhle-der-Löwen.png'
-// import hertl from '../images/jägermeister-bockbier_hertl.png'
-// import rum from '../images/smutje-kokosnuss-likoer-rum.png'
-// import freytag from '../images/hibiskus-likör_freytag.png'
-// import gruender from '../images/team-gruender_honest-rare.png'
+
 
 export default function Home() {
   return (
