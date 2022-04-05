@@ -21,7 +21,7 @@ export default function Home() {
             </div>
             <div class="main-container">
                 <div class="hidden relative w-100">
-                    <div data-swipe-threshold="100" id="o1" class="gallery relative flex w-3600">
+                    <div data-swipe-threshold="100" id="o3" class="gallery relative flex w-3600">
                         <div class="gallery__block">
                             <div class="gallery__first-half">
                                 <div class="gallery__market-name"><div>HONEST&amp;RARE</div> <div class="g_mar">VERSPRECHEN</div></div>
