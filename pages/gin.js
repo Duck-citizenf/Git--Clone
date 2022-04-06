@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import Footer from '../Components/Footer'
 import Nav from '../Components/Nav'
+import Script from 'next/script'
 
 async function addToCart(newItem){
     
@@ -132,6 +133,7 @@ export default function gin() {
             <div className="expander">
             </div>
             <Footer/>
+            <Script src='/getdata.js'/>
         </body>
     )
 }
