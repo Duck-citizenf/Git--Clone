@@ -63,8 +63,8 @@ export default function gin({allProducts}) {
                                     </a>
                                 </div>
                                 <div className="button">
-                                    <button className="product1" onClick={()=>{addToCart(allProducts[0].node.id)}
-                                        }>In meinen Getränkekorb
+                                    <button className="product1">
+                                        In meinen Getränkekorb
                                     </button>
                                 </div>
                             </div>
