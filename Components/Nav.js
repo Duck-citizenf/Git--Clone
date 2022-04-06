@@ -1,6 +1,6 @@
 import Image from 'next/image'
 import Link from 'next/link'
-
+import Script from 'next/script'
 export default function Nav() {
     return (
         <header>
@@ -60,34 +60,36 @@ export default function Nav() {
                             <div class="header__platform-right">
                                 <a class="header__basket-logo">Mein Getränkekorb</a>
                                 <div class="pt-15">
-                                    <div class="flex relative header__basket-middle">
-                                        <span class="bottle"><img src="/images/like.png"/></span>
-                                        <div class="wide">
-                                            <a>Der Hopfen Gin</a>
-                                            <div class="flex header__basket-line">
-                                                <select>
-                                                <option>1</option>
-                                                <option>2</option>
-                                                <option>3</option>
-                                                <option>4</option>
-                                                <option>5</option>
-                                                <option>6</option>
-                                                <option>7</option>
-                                                <option>8</option>
-                                                <option>9</option>
-                                                <option>10</option>
-                                                <option>11</option>
-                                                <option>12</option>
-                                                <option>13</option>
-                                                <option>14</option>
-                                                <option>15</option>
-                                                <option>16</option>
-                                                <option>17</option>
-                                                <option>18</option>
-                                                <option>19</option>
-                                                <option>20</option>
-                                                </select>
-                                                <a>€29,50</a>
+                                    <div className="header__basket-list">
+                                        <div class="flex relative header__basket-middle">
+                                            <span class="bottle"><img src="/images/like.png"/></span>
+                                            <div class="wide">
+                                                <a>Der Hopfen Gin</a>
+                                                <div class="flex header__basket-line">
+                                                    <select>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                    <option>7</option>
+                                                    <option>8</option>
+                                                    <option>9</option>
+                                                    <option>10</option>
+                                                    <option>11</option>
+                                                    <option>12</option>
+                                                    <option>13</option>
+                                                    <option>14</option>
+                                                    <option>15</option>
+                                                    <option>16</option>
+                                                    <option>17</option>
+                                                    <option>18</option>
+                                                    <option>19</option>
+                                                    <option>20</option>
+                                                    </select>
+                                                    <a>€29,50</a>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -135,6 +137,7 @@ export default function Nav() {
                         <div class="flex page-top__search">SUCHE<img src="/images/like.png"/></div>
                     </div>
             </div>
+            <Script src='/getdata.js'/>
         </header>
     )
 }
