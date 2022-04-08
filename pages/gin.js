@@ -2,13 +2,35 @@ import Link from 'next/link'
 import Footer from '../Components/Footer'
 import Nav from '../Components/Nav'
 import Script from 'next/script'
-import {getProductsInCollection} from '../lib/shopify'
+import {useState, useContext} from 'react'
+import { CartContext } from '../context/shopContext'
+import {getProduct, product} from '../lib/shopify'
 
-async function addToCart(newItem){
+export default function gin() {
+    const {addToCart} = useContext(CartContext)
+    const allVariantsOptions = product.variants.edges?.map(variant => {
+    const allOptions = {}
     
-}
-export default function gin({allProducts}) {
-    console.log({allProducts})
+    variant.node.selectedOptions.map(item => {allOptions[item.name] = item.value})
+    return{
+      id: variant.node.id,
+      title: variant.node.title,
+      handle: product.handle,
+      image: variant.node.image?.originalSrc,
+      options: allOptions,
+      variantTitle: variant.node.title,
+      variantPrice: variant.node.priceV2.amount,
+      variantQuantity: 1
+    }
+  })
+
+  const defaultValues = {}
+  product.options.map(item => {
+    defaultValues[item.name]=item.values[0]
+  })
+
+  const [selectedVariant, setSelectedVariant] = useState(allVariantsOptions[0])
+  const [selectedOptions, setSelectedOptions] = useState(defaultValues)
   return (
         <body>
             <Nav/>
@@ -63,7 +85,7 @@ export default function gin({allProducts}) {
                                     </a>
                                 </div>
                                 <div className="button">
-                                    <button className="product1">
+                                    <button className="product1" onClick = {addToCart(selectedVariant)}>
                                         In meinen Getränkekorb
                                     </button>
                                 </div>
@@ -85,7 +107,9 @@ export default function gin({allProducts}) {
                                     </a>
                                 </div>
                                 <div className="button">
-                                    <button>In meinen Getränkekorb</button>
+                                    <button className="product2">
+                                        In meinen Getränkekorb
+                                    </button>
                                 </div>
                             </div>
                             <div className="relative main__in-img">
@@ -105,7 +129,9 @@ export default function gin({allProducts}) {
                                     </a>
                                 </div>
                                 <div className="button">
-                                    <button>In meinen Getränkekorb</button>
+                                    <button className="product3">
+                                        In meinen Getränkekorb
+                                    </button>
                                 </div>
                             </div>
                             <div className="relative main__in-img">
@@ -125,7 +151,9 @@ export default function gin({allProducts}) {
                                     </a>
                                 </div>
                                 <div className="button">
-                                    <button>In meinen Getränkekorb</button>
+                                    <button className="product4">
+                                        In meinen Getränkekorb
+                                    </button>
                                 </div>
                             </div>
                         </div>
@@ -139,10 +167,12 @@ export default function gin({allProducts}) {
         </body>
     )
 }
-export async function getStaticProps() {
-    const allProducts = await getProductsInCollection()
+export async function getStaticProps({params}){
+    const product = await getProduct(params.product)
   
     return {
-      props: { allProducts }, // will be passed to the page component as props
+      props: {
+        product
+      }
     }
   }
