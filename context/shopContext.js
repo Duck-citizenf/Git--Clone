@@ -4,15 +4,14 @@ import { createCheckout, updateCheckout } from "../lib/shopify"
 const CartContext = createContext()
 
 export default function ShopProvider({children}) {
-    const [cart, setCart] = useState([])
-    const [cartOpen, setCartOpen] = useState(false)
-    const [checkoutId, setCheckoutId] = useState('')
-    const [checkoutUrl, setCheckoutUrl] = useState('')
+    const [cart, setCart] = useState([]) //declare array of products
+    const [checkoutId, setCheckoutId] = useState('') //initial states
+    const [checkoutUrl, setCheckoutUrl] = useState('') //initial states
 
     async function addToCart(newItem) {
-        setCartOpen(true)
-        if(cart.length === 0) {
-          setCart([newItem])
+        if(cart.length === 0) //if nothing in the cart
+        {
+          setCart([newItem]) 
     
         const checkout = await createCheckout(newItem.id, newItem.variantQuantity)
 
@@ -20,6 +19,9 @@ export default function ShopProvider({children}) {
         setCheckoutUrl(checkout.webUrl)
 
         localStorage.setItem("checkout_id", JSON.stringify([newItem, checkout]))
+        }
+        else {
+          
         }
     }
     return (
