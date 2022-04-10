@@ -21,14 +21,26 @@ export default function ShopProvider({children}) {
         localStorage.setItem("checkout_id", JSON.stringify([newItem, checkout]))
         }
         else {
+          let newCart = [...cart] // new object from existing cart
           
+          cart.map(item => {
+            if (item.id === newItem.id) // if item already in cart
+            {
+              item.variantQuantity++ // +1 to value
+              newCart = [...cart]
+            } 
+            else {
+                newCart = [...cart, newItem] // add new item on top
+            }
+          })
+          setCart(newCart)
+          const newCheckout = await updateCheckout(checkoutId, newCart)
+          localStorage.setItem("checkout_id", JSON.stringify([newCart, newCheckout]))
         }
     }
     return (
         <CartContext.Provider value={{ 
           cart,
-          cartOpen,
-          setCartOpen,
           addToCart,
           checkoutUrl
         }}>

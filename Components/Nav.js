@@ -1,7 +1,7 @@
-import Image from 'next/image'
 import Link from 'next/link'
 import Script from 'next/script'
-export default function Nav() {
+
+const Nav = ({product}) => {
     return (
         <header>
             <div class="flex header-strip">
@@ -112,7 +112,9 @@ export default function Nav() {
                         <div>% SALE</div>
                         <div>CRAFT BEER</div>
                         <div class="relative page-top__dropdown">
-                            <button class="page-top__dropbtn"><Link href="/gin">GIN</Link></button>
+                            <button class="page-top__dropbtn">
+                                {/* <Link href={`/category/${handle}`}>GIN</Link> */}
+                            </button>
                             <div class="page-top__dropdown-content">
                                 <a>Dry</a>
                                 <a>Pure</a>
@@ -141,3 +143,5 @@ export default function Nav() {
         </header>
     )
 }
+
+export default Nav
