@@ -9,7 +9,7 @@ import {getAllProducts, getProduct, getProductsInCollection} from '../../lib/sho
 
 export default function gin({products}) {
     const {addToCart} = useContext(CartContext)   
-    console.log() 
+    console.log(products) 
 //   const defaultValues = {}
 //   product.options.map(item => {
 //     defaultValues[item.name]=item.values[0]
@@ -19,7 +19,7 @@ export default function gin({products}) {
 //   const [selectedOptions, setSelectedOptions] = useState(defaultValues)
 
   return (
-        <body>
+        <div>
             <Nav/>
             <div className="flex main">
                 <div className="main__filters">
@@ -27,7 +27,7 @@ export default function gin({products}) {
                         <summary>
                             Preis
                         </summary>
-                        € <input className="main__price-range"/> - € <input class="main__price-range"/>
+                        € <input className="main__price-range"/> - € <input className="main__price-range"/>
                     </details>
                     <details>
                         <summary>
@@ -74,7 +74,7 @@ export default function gin({products}) {
                                             {product.node.priceRange.minVariantPrice.amount}
                                         </a>
                                         <a className="button">
-                                            <button class="main__cart-button">⚖</button>
+                                            <button className="main__cart-button">⚖</button>
                                         </a>
                                     </div>
                                     <div className="button">
@@ -94,7 +94,7 @@ export default function gin({products}) {
             </div>
             <Footer/>
             <Script src='/getdata.js'/>
-        </body>
+        </div>
     )
 }
 

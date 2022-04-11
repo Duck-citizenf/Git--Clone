@@ -4,22 +4,22 @@ import Script from 'next/script'
 const Nav = ({product}) => {
     return (
         <header>
-            <div class="flex header-strip">
+            <div className="flex header-strip">
                 <p>✔ Über 1.000 Getränke direkt vom Hersteller bestellen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✔ Nichts aus dem Supermarkt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✔ Wir beraten dich: 030-99004741</p>
             </div>
-            <div class="flex header">
-                <div tabindex="0" class="header__menu">
-                    <div tabindex="0" class="header__burger">☰</div>
-                    <div class="header__platform">
+            <div className="flex header">
+                <div tabIndex="0" className="header__menu">
+                    <div tabIndex="0" className="header__burger">☰</div>
+                    <div className="header__platform">
                         <a>% SALE</a>
                         <a>CRAFT BEER</a>
-                        <div tabindex="0" class="header__menu">
+                        <div tabIndex="0" className="header__menu">
                             <a>GIN</a>
-                            <div class="relative header__platform">
-                                <a class="header__options">Dry</a>
-                                <a class="header__options">Pure</a>
-                                <a class="header__options">Liquid</a>
-                                <a class="header__options">Solid</a>
+                            <div className="relative header__platform">
+                                <a className="header__options">Dry</a>
+                                <a className="header__options">Pure</a>
+                                <a className="header__options">Liquid</a>
+                                <a className="header__options">Solid</a>
                             </div>
                         </div>
                         <a>SPIRITUOSEN</a>
@@ -30,42 +30,42 @@ const Nav = ({product}) => {
                         <a>WISSEN</a>
                     </div>
                 </div>
-                <div class="header__logo">
+                <div className="header__logo">
                     <Link href="/">
                         <a>
                             <img src="/images/top-logo.png"/>
                         </a>
                     </Link>
                 </div>
-                <div class="flex text-center header__buttons">
-                    <span class="header__button-margins">
+                <div className="flex text-center header__buttons">
+                    <span className="header__button-margins">
                         <img src="/images/like.png"/>
                         <div>Love-List</div>   
                     </span>
-                    <span class="header__button-margins">
+                    <span className="header__button-margins">
                         <img src="/images/like.png"/>
                         <div>Mein Konto</div> 
                     </span>
-                    <div tabindex="0" className="header__basket">
-                        <div tabindex="0" className="header__buttons">
-                            <span tabindex="0" className="header__button-margins">
-                                <span tabindex="0" className="relative">
+                    <div tabIndex="0" className="header__basket">
+                        <div tabIndex="0" className="header__buttons">
+                            <span tabIndex="0" className="header__button-margins">
+                                <span tabIndex="0" className="relative">
                                     <img src="/images/like.png"/>
-                                    <span class="count">1</span>
+                                    <span className="count">1</span>
                                 </span>
-                                <div tabindex="0">Getränkekorb</div>
+                                <div tabIndex="0">Getränkekorb</div>
                             </span>
                         </div>
-                        <div class="relative header__minicart">
-                            <div class="header__platform-right">
-                                <a class="header__basket-logo">Mein Getränkekorb</a>
-                                <div class="pt-15">
+                        <div className="relative header__minicart">
+                            <div className="header__platform-right">
+                                <a className="header__basket-logo">Mein Getränkekorb</a>
+                                <div className="pt-15">
                                     <div className="header__basket-list">
-                                        <div class="flex relative header__basket-middle">
-                                            <span class="bottle"><img src="/images/like.png"/></span>
-                                            <div class="wide">
+                                        <div className="flex relative header__basket-middle">
+                                            <span className="bottle"><img src="/images/like.png"/></span>
+                                            <div className="wide">
                                                 <a>Der Hopfen Gin</a>
-                                                <div class="flex header__basket-line">
+                                                <div className="flex header__basket-line">
                                                     <select>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -108,14 +108,14 @@ const Nav = ({product}) => {
                 </div>
             </div>
             <div id="page-top">
-                    <div class="flex page-top__header">
+                    <div className="flex page-top__header">
                         <div>% SALE</div>
                         <div>CRAFT BEER</div>
-                        <div class="relative page-top__dropdown">
-                            <button class="page-top__dropbtn">
-                                {/* <Link href={`/category/${handle}`}>GIN</Link> */}
+                        <div className="relative page-top__dropdown">
+                            <button className="page-top__dropbtn">
+                                <Link href={`/category/gin`}>GIN</Link>
                             </button>
-                            <div class="page-top__dropdown-content">
+                            <div className="page-top__dropdown-content">
                                 <a>Dry</a>
                                 <a>Pure</a>
                                 <a>Liquid</a>
@@ -136,7 +136,7 @@ const Nav = ({product}) => {
                                 <a>GIN-REZEPTE</a>
                             </div>
                         </div>
-                        <div class="flex page-top__search">SUCHE<img src="/images/like.png"/></div>
+                        <div className="flex page-top__search">SUCHE<img src="/images/like.png"/></div>
                     </div>
             </div>
             <Script src='/getdata.js'/>

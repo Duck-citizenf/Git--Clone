@@ -4,163 +4,164 @@ import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
 import {getProduct, getAllProducts} from "../../lib/shopify"
 
-export default function Home({products}) {
+export default function Home(product) {
+    console.log(product.handle) 
   return (
-        <body>
+        <div>
             <Nav/>
-            <div class="main-content">
-                <div class="flex">
-                    <div class="gallery_product">
-                        <div class="gallery__sale">
+            <div className="main-content">
+                <div className="flex">
+                    <div className="gallery_product">
+                        <div className="gallery__sale">
                             SALE
                         </div>
-                        <div class="gallery__path">
+                        <div className="gallery__path">
                             <a className="gallery__path-line">Homepage</a>
                             <a className="gallery__path-slash">/</a>
                             <a className="gallery__path-line">Gin</a>
                             <a className="gallery__path-slash">/</a>
                             <a className="gallery__path-last">Dry Gin</a>
                         </div>
-                        <div data-swipe-threshold="100" id="o1" class="gallery-1_product">
-                            <div class="gallery-img"><img src='/images/Dry.png'/></div>
-                            <div class="gallery-img"><img src='/images/Dry1.png'/></div>
-                            <div class="gallery-img"><img src='/images/Dry2.png'/></div>
+                        <div data-swipe-threshold="100" id="o1" className="gallery-1_product">
+                            <div className="gallery-img"><img src='/images/Dry.png'/></div>
+                            <div className="gallery-img"><img src='/images/Dry1.png'/></div>
+                            <div className="gallery-img"><img src='/images/Dry2.png'/></div>
                         </div>
-                        <div class="gallery-button">
-                            <input type="image" class="gallery_1_product" src="images/like.png"/>
-                            <input type="image" class="gallery_2_product" src="images/like.png"/>
-                            <input type="image" class="gallery_3_product" src="images/like.png"/>
+                        <div className="gallery-button">
+                            <input type="image" className="gallery_1_product" src="/images/like.png"/>
+                            <input type="image" className="gallery_2_product" src="/images/like.png"/>
+                            <input type="image" className="gallery_3_product" src="/images/like.png"/>
                         </div>
                     </div>
-                    <div class="product">
-                        <div class="product__title">DRY GIN</div>
-                        <div class="product__price">
-                            <span class="product__main">€29,50</span>
-                            <span class="product__bottom-price">+ 0,15€ Pfand</span>
-                            <span class="product__top-price">(€59,00 pro l)</span>
-                            <span class="product__matter-size">Inhalt: <strong>0,5 l</strong></span>
+                    <div className="product">
+                        <div className="product__title">{product.handle}</div>
+                        <div className="product__price">
+                            <span className="product__main">€29,50</span>
+                            <span className="product__bottom-price">+ 0,15€ Pfand</span>
+                            <span className="product__top-price">(€59,00 pro l)</span>
+                            <span className="product__matter-size">Inhalt: <strong>0,5 l</strong></span>
                         </div>
-                        <div class="product__tax">
+                        <div className="product__tax">
                             inkl. MwSt
                         </div>
-                        <div class="product__pre-price">
-                            <span class="product__price-was"><strike>€35,80</strike></span> 
-                            <span class="product__price-net">Du sparst: €6,30 (18%)</span> 
+                        <div className="product__pre-price">
+                            <span className="product__price-was"><strike>€35,80</strike></span> 
+                            <span className="product__price-net">Du sparst: €6,30 (18%)</span> 
                         </div>
-                        <div class="amount">
-                            <div class="inline-block w-93px">
-                                <a class="amount_plus">+</a>
-                                <input type="text" value='1' class="amount_number"/>
-                                <a class="amount_minus">-</a>
+                        <div className="amount">
+                            <div className="inline-block w-93px">
+                                <a className="amount_plus">+</a>
+                                <input type="text" defaultValue='1' className="amount_number"/>
+                                <a className="amount_minus">-</a>
                             </div>
-                            <div class="amount_button_container"><button class="amount_button">In meinen Getränkekorb</button></div>
-                            <div class="marked_storage">&amp;&nbsp;Auf Lager</div>
-                            <div class="amount_favorite">
+                            <div className="amount_button_container"><button className="amount_button">In meinen Getränkekorb</button></div>
+                            <div className="marked_storage">&amp;&nbsp;Auf Lager</div>
+                            <div className="amount_favorite">
                                 ♡
                             </div>
                         </div>
-                        <div class="bonuses">
-                            <div class="flex">
-                                <div class="mt-10"><img src="/images/like.png"/></div>
-                                <div class="bonuses_exp mt-10">Sichere <br/> Bezahlung</div>
+                        <div className="bonuses">
+                            <div className="flex">
+                                <div className="mt-10"><img src="/images/like.png"/></div>
+                                <div className="bonuses_exp mt-10">Sichere <br/> Bezahlung</div>
                             </div>
-                            <div class="flex">
-                                <div class="mt-10"><img src="/images/like.png"/></div>
-                                <div class="bonuses_exp mt-10">Telefonische <br/> Beratung</div>
+                            <div className="flex">
+                                <div className="mt-10"><img src="/images/like.png"/></div>
+                                <div className="bonuses_exp mt-10">Telefonische <br/> Beratung</div>
                             </div>
-                            <div class="flex last">
-                                <div class="bonuses_exp mt-10">Alle <br/> Getränke <br/> von</div>
-                                <div class="mt-10"><img src="/images/like.png"/></div>
+                            <div className="flex last">
+                                <div className="bonuses_exp mt-10">Alle <br/> Getränke <br/> von</div>
+                                <div className="mt-10"><img src="/images/like.png"/></div>
                             </div>
                         </div>
-                        <div class="Lieferung">
+                        <div className="Lieferung">
                             Lieferung
                         </div>
-                        <div class="others">
-                            <span class="mr-6">Versand:</span>
+                        <div className="others">
+                            <span className="mr-6">Versand:</span>
                             <span>€0,00</span>
                         </div>
-                        <div class="others">
-                            <span class="mr-6">Lieferzeit:</span>
+                        <div className="others">
+                            <span className="mr-6">Lieferzeit:</span>
                             <span>3-5 Tage</span>
                         </div>
-                        <div class="others">
-                            <span class="mr-6">Verkauf und Versand durch:</span>
+                        <div className="others">
+                            <span className="mr-6">Verkauf und Versand durch:</span>
                             <span>Honest &amp; Rare (Versender: Braumanufaktur Hertl)</span>
                         </div>
                     </div>
                 </div>
-                <div class="featuress flex">
-                    <div class="features">
+                <div className="featuress flex">
+                    <div className="features">
                         <span className="mx-auto"><img src="/images/like.png"/></span>
                         <span className="features_text">Gin</span>
                     </div>
-                    <div class="features">
-                        <span class="mx-auto"><img src="/images/like.png"/></span>
-                        <span class="features_text">blumig, herb, <br/> fruchtig, Mandarine</span>
+                    <div className="features">
+                        <span className="mx-auto"><img src="/images/like.png"/></span>
+                        <span className="features_text">blumig, herb, <br/> fruchtig, Mandarine</span>
                     </div>
-                    <div class="features">
-                        <span class="mx-auto"><img src="/images/like.png"/></span>
-                        <span class="features_text">Hallertauer <br/> Mandarina</span>
+                    <div className="features">
+                        <span className="mx-auto"><img src="/images/like.png"/></span>
+                        <span className="features_text">Hallertauer <br/> Mandarina</span>
                     </div>
-                    <div class="features">
-                        <span class="mx-auto"><img src="/images/like.png"/></span>
-                        <span class="features_text">Schlüsselfeld, Bayern</span>
+                    <div className="features">
+                        <span className="mx-auto"><img src="/images/like.png"/></span>
+                        <span className="features_text">Schlüsselfeld, Bayern</span>
                     </div>
-                    <div class="features odd">
-                        <span class="mx-auto"><img src="/images/like.png"/></span>
-                        <span class="features_text">37.5% vol.</span>
+                    <div className="features odd">
+                        <span className="mx-auto"><img src="/images/like.png"/></span>
+                        <span className="features_text">37.5% vol.</span>
                     </div>
                 </div>
-                <div class="flex mt-58 block">
-                    <div class="tab_warp">
-                        <input type="radio" name="tab" id="rad1" class="radio1" checked/>
-                        <label for="rad1" class="radio1_tab">Produktbeschreibung</label>
-                        <input type="radio" name="tab" id="rad2" class="radio2"/>
-                        <label for="rad2" class="radio2_tab">Herstellerinformationen</label>
-                        <div class="bottle_tab">
+                <div className="flex mt-58 block">
+                    <div className="tab_warp">
+                        <input type="radio" name="tab" id="rad1" className="radio1" defaultChecked/>
+                        <label htmlFor="rad1" className="radio1_tab">Produktbeschreibung</label>
+                        <input type="radio" name="tab" id="rad2" className="radio2"/>
+                        <label htmlFor="rad2" className="radio2_tab">Herstellerinformationen</label>
+                        <div className="bottle_tab">
                             <img src='/images/beauty shot.png'/>
                         </div>
-                        <div class="map_tab">
+                        <div className="map_tab">
                             <img src='/images/top-logo.png'/>
                         </div>
                     </div>
                 </div>
-                <div class="liters">
-                    <div class="liters_content">
+                <div className="liters">
+                    <div className="liters_content">
                         <span>Inhalt:</span>
-                        <div class="affixes">0,5 Liter</div>
+                        <div className="affixes">0,5 Liter</div>
                     </div>
-                    <div class="liters_content gray">
+                    <div className="liters_content gray">
                         <span>Hersteller:</span>
-                        <div class="affixes">Braumanufaktur Hertl</div>
+                        <div className="affixes">Braumanufaktur Hertl</div>
                     </div>
-                    <div class="liters_content">
+                    <div className="liters_content">
                         <span>Abfüllmenge:</span>
-                        <div class="affixes">200 Flaschen</div>
+                        <div className="affixes">200 Flaschen</div>
                     </div>
-                    <div class="liters_content gray">
+                    <div className="liters_content gray">
                         <span>Getränketyp:</span>
-                        <div class="affixes">Gin</div>
+                        <div className="affixes">Gin</div>
                     </div>
-                    <div class="liters_content">
+                    <div className="liters_content">
                         <span>Lebensmittelunternehmen:</span>
-                        <div class="affixes">Braumanufaktur Hertl, Thüngfeld 61, 96132 Schlüsselfeld</div>
+                        <div className="affixes">Braumanufaktur Hertl, Thüngfeld 61, 96132 Schlüsselfeld</div>
                     </div>
                 </div>
             </div>
             <Footer/>
             <Script type="text/javascript" src="/swiped-events.min.js"/>
             <Script type="text/javascript" src="/product-js.js"/>
-        </body>
+        </div>
     )
 }
 export async function getStaticPaths() {
     
     const string = await getAllProducts();
-    const paths = string.map(item=>{const tttt = String(item.node.handle)
+    const paths = string.map(item=>{const handlesSet = String(item.node.handle)
       return{
-        params: {handle:tttt}
+        params: {handle:handlesSet}
       }
     })
     return{
@@ -170,11 +171,11 @@ export async function getStaticPaths() {
 }
 
 export async function getStaticProps({params}){
-    const products = await getProduct(params.product)
+    const product = await getProduct(params.product)
   
     return {
       props: {
-        products
+        product
       }
     }
   }
