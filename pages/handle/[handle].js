@@ -4,8 +4,9 @@ import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
 import {getProduct, getAllProducts} from "../../lib/shopify"
 
-export default function Home(product) {
-    console.log(product.handle) 
+export default function Home({product}) {
+    console.log(product)
+    const name = product.title
   return (
         <div>
             <Nav/>
@@ -20,10 +21,10 @@ export default function Home(product) {
                             <a className="gallery__path-slash">/</a>
                             <a className="gallery__path-line">Gin</a>
                             <a className="gallery__path-slash">/</a>
-                            <a className="gallery__path-last">Dry Gin</a>
+                            <a className="gallery__path-last">{name}</a>
                         </div>
                         <div data-swipe-threshold="100" id="o1" className="gallery-1_product">
-                            <div className="gallery-img"><img src='/images/Dry.png'/></div>
+                            <div className="gallery-img"><Image src={product.images.edges[0].node.originalSrc} width="585" height="400"/></div>
                             <div className="gallery-img"><img src='/images/Dry1.png'/></div>
                             <div className="gallery-img"><img src='/images/Dry2.png'/></div>
                         </div>
@@ -34,7 +35,7 @@ export default function Home(product) {
                         </div>
                     </div>
                     <div className="product">
-                        <div className="product__title">{product.handle}</div>
+                        <div className="product__title">{name}</div>
                         <div className="product__price">
                             <span className="product__main">€29,50</span>
                             <span className="product__bottom-price">+ 0,15€ Pfand</span>
@@ -169,9 +170,8 @@ export async function getStaticPaths() {
       fallback: false
     }
 }
-
 export async function getStaticProps({params}){
-    const product = await getProduct(params.product)
+    const product = await getProduct(params.handle)
   
     return {
       props: {
