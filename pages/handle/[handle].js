@@ -25,8 +25,8 @@ export default function Home({product}) {
                         </div>
                         <div data-swipe-threshold="100" id="o1" className="gallery-1_product">
                             <div className="gallery-img"><Image src={product.images.edges[0].node.originalSrc} width="585" height="400"/></div>
-                            <div className="gallery-img"><img src='/images/Dry1.png'/></div>
-                            <div className="gallery-img"><img src='/images/Dry2.png'/></div>
+                            <div className="gallery-img"><Image src='/images/Dry1.png' width="585" height="400"/></div>
+                            <div className="gallery-img"><Image src='/images/Dry2.png' width="585" height="400"/></div>
                         </div>
                         <div className="gallery-button">
                             <input type="image" className="gallery_1_product" src="/images/like.png"/>
