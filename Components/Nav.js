@@ -1,8 +1,15 @@
 import Link from 'next/link'
 import Script from 'next/script'
+import { useContext } from "react"
+import { CartContext } from "../context/shopContext"
 
-const Nav = ({product}) => {
-    return (
+export default function Nav() {
+          const {cart,cartOpen,setCartOpen}=useContext(CartContext)
+        let cartQuantity = 0
+        cart.map(item=>{
+          return (cartQuantity += item?.variantQuantity)
+        })
+        return (
         <header>
             <div className="flex header-strip">
                 <p>✔ Über 1.000 Getränke direkt vom Hersteller bestellen&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✔ Nichts aus dem Supermarkt&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;✔ Wir beraten dich: 030-99004741</p>
@@ -51,7 +58,7 @@ const Nav = ({product}) => {
                             <span tabIndex="0" className="header__button-margins">
                                 <span tabIndex="0" className="relative">
                                     <img src="/images/like.png"/>
-                                    <span className="count">1</span>
+                                    <span className="count">{cartQuantity}</span>
                                 </span>
                                 <div tabIndex="0">Getränkekorb</div>
                             </span>
@@ -143,5 +150,3 @@ const Nav = ({product}) => {
         </header>
     )
 }
-
-export default Nav

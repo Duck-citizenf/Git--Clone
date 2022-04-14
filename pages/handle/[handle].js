@@ -2,11 +2,36 @@ import Image from 'next/image'
 import Script from 'next/script'
 import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
+import {useState, useContext} from 'react'
 import {getProduct, getAllProducts} from "../../lib/shopify"
+import { CartContext } from '../../context/shopContext'
 
 export default function Home({product}) {
     console.log(product)
     const name = product.title
+    const {addToCart} = useContext(CartContext)
+    const allVariantsOptions = product.variants.edges?.map(variant => {
+      const allOptions = {}
+  
+      variant.node.selectedOptions.map(item => {allOptions[item.name] = item.value})
+      return{
+        id: variant.node.id,
+        title: variant.node.title,
+        handle: product.handle,
+        image: variant.node.image?.originalSrc,
+        variantTitle: variant.node.title,
+        variantQuantity: 1
+      }
+    })
+  
+    const defaultValues = {}
+    product.options.map(item => {
+      defaultValues[item.name]=item.values[0]
+    })
+  
+    const [selectedVariant, setSelectedVariant] = useState(allVariantsOptions[0])
+    const [selectedOptions, setSelectedOptions] = useState(defaultValues)
+  
   return (
         <div>
             <Nav/>
@@ -55,7 +80,12 @@ export default function Home({product}) {
                                 <input type="text" defaultValue='1' className="amount_number"/>
                                 <a className="amount_minus">-</a>
                             </div>
-                            <div className="amount_button_container"><button className="amount_button">In meinen Getränkekorb</button></div>
+                            <div className="amount_button_container">
+                                <button className="amount_button" onClick={()=>{addToCart(selectedVariant)}
+                                    }>
+                                    In meinen Getränkekorb
+                                </button>
+                            </div>
                             <div className="marked_storage">&amp;&nbsp;Auf Lager</div>
                             <div className="amount_favorite">
                                 ♡
