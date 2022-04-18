@@ -8,8 +8,7 @@ import { CartContext } from '../../context/shopContext'
 import {getAllProducts, getProduct, getProductsInCollection} from '../../lib/shopify'
 
 export default function gin({products}) {
-    const {addToCart} = useContext(CartContext)   
-    console.log(products) 
+    const {addToCart} = useContext(CartContext)
 //   const defaultValues = {}
 //   product.options.map(item => {
 //     defaultValues[item.name]=item.values[0]
@@ -52,7 +51,7 @@ export default function gin({products}) {
                                 const selectedVariant = {id: product.node.variants.edges[0].node.id, variantQuantity: 1}
                                 return (
                                     <div className="relative main__in-img">
-                                    <Link href={`/handle/${product.node.handle}`}>
+                                    <Link href={`/products/${product.node.handle}`}>
                                         <a>
                                             <Image src={product.node.images.edges[0].node.originalSrc} width="200" height="200"/>
                                         </a>

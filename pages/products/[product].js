@@ -2,13 +2,13 @@ import Image from 'next/image'
 import Script from 'next/script'
 import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
-import {useState, useContext} from 'react'
+import {useState, useContext, React} from 'react'
 import {getProduct, getAllProducts} from "../../lib/shopify"
 import { CartContext } from '../../context/shopContext'
 
 export default function Home({product}) {
-    console.log(product)
     const name = product.title
+    console.log(product)
     const {addToCart} = useContext(CartContext)
     const allVariantsOptions = product.variants.edges?.map(variant => {
       const allOptions = {}
@@ -16,10 +16,12 @@ export default function Home({product}) {
       variant.node.selectedOptions.map(item => {allOptions[item.name] = item.value})
       return{
         id: variant.node.id,
-        title: variant.node.title,
+        title: product.title,
         handle: product.handle,
         image: variant.node.image?.originalSrc,
+        options: allOptions,
         variantTitle: variant.node.title,
+        variantPrice: variant.node.priceV2.amount,
         variantQuantity: 1
       }
     })
@@ -31,6 +33,21 @@ export default function Home({product}) {
   
     const [selectedVariant, setSelectedVariant] = useState(allVariantsOptions[0])
     const [selectedOptions, setSelectedOptions] = useState(defaultValues)
+
+    function setOptions(name,value){
+        setSelectedOptions(prevState=>{
+          return {...prevState, [name]:value}
+        })
+        const selection = {
+          ...selectedOptions,
+          [name]: value
+        }
+        allVariantsOptions.map(item => {
+          if (JSON.stringify(item.options) === JSON.stringify(selection)) {
+            setSelectedVariant(item)
+          }
+        })
+      }
   
   return (
         <div>
@@ -190,9 +207,11 @@ export default function Home({product}) {
 export async function getStaticPaths() {
     
     const string = await getAllProducts();
-    const paths = string.map(item=>{const handlesSet = String(item.node.handle)
+    const paths = string.map(item=>{
+        const product = String(item.node.handle)
+        
       return{
-        params: {handle:handlesSet}
+        params: {product}
       }
     })
     return{
@@ -201,7 +220,7 @@ export async function getStaticPaths() {
     }
 }
 export async function getStaticProps({params}){
-    const product = await getProduct(params.handle)
+    const product = await getProduct(params.product)
   
     return {
       props: {

@@ -2,9 +2,10 @@ import Link from 'next/link'
 import Script from 'next/script'
 import { useContext } from "react"
 import { CartContext } from "../context/shopContext"
+import MiniCart from "./MiniCart"
 
 export default function Nav() {
-          const {cart,cartOpen,setCartOpen}=useContext(CartContext)
+        const {cart,cartOpen,setCartOpen}=useContext(CartContext)
         let cartQuantity = 0
         cart.map(item=>{
           return (cartQuantity += item?.variantQuantity)
@@ -63,54 +64,8 @@ export default function Nav() {
                                 <div tabIndex="0">Getränkekorb</div>
                             </span>
                         </div>
-                        <div className="relative header__minicart">
-                            <div className="header__platform-right">
-                                <a className="header__basket-logo">Mein Getränkekorb</a>
-                                <div className="pt-15">
-                                    <div className="header__basket-list">
-                                        <div className="flex relative header__basket-middle">
-                                            <span className="bottle"><img src="/images/like.png"/></span>
-                                            <div className="wide">
-                                                <a>Der Hopfen Gin</a>
-                                                <div className="flex header__basket-line">
-                                                    <select>
-                                                    <option>1</option>
-                                                    <option>2</option>
-                                                    <option>3</option>
-                                                    <option>4</option>
-                                                    <option>5</option>
-                                                    <option>6</option>
-                                                    <option>7</option>
-                                                    <option>8</option>
-                                                    <option>9</option>
-                                                    <option>10</option>
-                                                    <option>11</option>
-                                                    <option>12</option>
-                                                    <option>13</option>
-                                                    <option>14</option>
-                                                    <option>15</option>
-                                                    <option>16</option>
-                                                    <option>17</option>
-                                                    <option>18</option>
-                                                    <option>19</option>
-                                                    <option>20</option>
-                                                    </select>
-                                                    <a>€29,50</a>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                    <div className="flex header__basket-line">
-                                        <a className="flex header__basket-price">Summe</a>
-                                        <a className="black-000 font-bold">€29,50</a>
-                                    </div>
-                                </div>
-                                <div className="button">
-                                    <button>Getränkekorb ansehen</button>
-                                    <button>Kasse</button>
-                                </div>
-                            </div>
-                        </div>
+                        {/* Minicart repeated element */}
+                        <MiniCart cart={cart}/>
                     </div>
                 </div>
             </div>
@@ -120,7 +75,7 @@ export default function Nav() {
                         <div>CRAFT BEER</div>
                         <div className="relative page-top__dropdown">
                             <button className="page-top__dropbtn">
-                                <Link href={`/category/gin`}>GIN</Link>
+                                <Link href={`/category/gin`}><a className="link-style">GIN</a></Link>
                             </button>
                             <div className="page-top__dropdown-content">
                                 <a>Dry</a>
@@ -138,7 +93,7 @@ export default function Nav() {
                             <button className="page-top__dropbtn">WISSEN</button>
                             <div className="page-top__dropdown-content">
                                 <Link href="/magazin">
-                                    <a>MAGAZIN</a>
+                                    <a className='link-style'>MAGAZIN</a>
                                 </Link>
                                 <a>GIN-REZEPTE</a>
                             </div>
