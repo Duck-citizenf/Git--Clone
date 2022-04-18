@@ -257,6 +257,9 @@ body {
 .mb-45{
     margin-bottom: 45px;
 }
+.pointer{
+    cursor: pointer;
+}
 .header-strip{
     background-color: #C8C8C8;
     margin-bottom: 3px;

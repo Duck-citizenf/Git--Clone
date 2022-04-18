@@ -8,7 +8,7 @@ import { CartContext } from '../../context/shopContext'
 
 export default function Home({product}) {
     const name = product.title
-    console.log(product)
+    console.log()
     const {addToCart} = useContext(CartContext)
     const allVariantsOptions = product.variants.edges?.map(variant => {
       const allOptions = {}
@@ -79,7 +79,7 @@ export default function Home({product}) {
                     <div className="product">
                         <div className="product__title">{name}</div>
                         <div className="product__price">
-                            <span className="product__main">€29,50</span>
+                            <span className="product__main">€{product.variants.edges[0].node.priceV2.amount}0</span>
                             <span className="product__bottom-price">+ 0,15€ Pfand</span>
                             <span className="product__top-price">(€59,00 pro l)</span>
                             <span className="product__matter-size">Inhalt: <strong>0,5 l</strong></span>

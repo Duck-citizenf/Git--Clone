@@ -27,6 +27,7 @@ export default function MiniCart({ cart }) {
                             <div className="wide">
                                 <a>{product.title}</a>
                                 <div className="flex header__basket-line">
+                                    <div>
                                     <select>
                                     <option>1</option>
                                     <option>2</option>
@@ -49,7 +50,9 @@ export default function MiniCart({ cart }) {
                                     <option>19</option>
                                     <option>20</option>
                                     </select>
-                                    <a></a>
+                                    <span className='px-10 pointer font-22' onClick={() => removeCartItem(product.id)}>🗑</span>
+                                    </div>
+                                    <a>{product.variantPrice}</a>
                                 </div>
                             </div>
                         </div>
@@ -57,7 +60,7 @@ export default function MiniCart({ cart }) {
                     ))}
                     <div className="flex header__basket-line">
                         <a className="flex header__basket-price">Summe</a>
-                        <a className="black-000 font-bold">{cartTotal}</a>
+                        <a className="black-000 font-bold">€{cartTotal}</a>
                     </div>       
                 </div>
                 <div className="button">
