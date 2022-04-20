@@ -64,7 +64,6 @@ export default function Nav() {
                                 <div tabIndex="0">Getränkekorb</div>
                             </span>
                         </div>
-                        {/* Minicart repeated element */}
                         <MiniCart cart={cart}/>
                     </div>
                 </div>

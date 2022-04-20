@@ -2,7 +2,7 @@ import Image from 'next/image'
 import Script from 'next/script'
 import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
-import {useState, useContext, React} from 'react'
+import {useState, useContext, React, useEffect} from 'react'
 import {getProduct, getAllProducts} from "../../lib/shopify"
 import { CartContext } from '../../context/shopContext'
 
@@ -25,7 +25,6 @@ export default function Home({product}) {
         variantQuantity: 1
       }
     })
-  
     const defaultValues = {}
     product.options.map(item => {
       defaultValues[item.name]=item.values[0]
@@ -35,20 +34,115 @@ export default function Home({product}) {
     const [selectedOptions, setSelectedOptions] = useState(defaultValues)
 
     function setOptions(name,value){
-        setSelectedOptions(prevState=>{
-          return {...prevState, [name]:value}
-        })
-        const selection = {
-          ...selectedOptions,
-          [name]: value
-        }
-        allVariantsOptions.map(item => {
-          if (JSON.stringify(item.options) === JSON.stringify(selection)) {
-            setSelectedVariant(item)
-          }
-        })
+      setSelectedOptions(prevState=>{
+        return {...prevState, [name]:value}
+      })
+      const selection = {
+        ...selectedOptions,
+        [name]: value
       }
-  
+      allVariantsOptions.map(item => {
+        if (JSON.stringify(item.options) === JSON.stringify(selection)) {
+          setSelectedVariant(item)
+        }
+      })
+    }
+    useEffect(()=>{
+        // button drag images
+        document.querySelector('.gallery_1_product').addEventListener('click', move1);
+        document.querySelector('.gallery_2_product').addEventListener('click', move2);
+        document.querySelector('.gallery_3_product').addEventListener('click', move3);
+        let a = 0;
+        var o1 = document.getElementById("o1");
+        function move1() {
+            o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+            o1.classList.add('gallery-1_product');
+            a = 0;
+        }
+        function move2() {
+            o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+            o1.classList.add('gallery-2_product');
+            a = 1;
+        }
+        function move3() {
+            o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+            o1.classList.add('gallery-3_product');
+            a = 2;
+        }
+        window.onload = function() {
+            document.querySelector('.gallery-1_product').addEventListener('swiped-left', function(e) {
+                console.log(e.type);
+                console.log(e.target);
+                console.log(e.detail);
+                if (a==1){
+                    o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+                    o1.classList.add('gallery-3_product'); 
+                    a=2;
+                }
+                if (a==0){
+                    o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+                    o1.classList.add('gallery-2_product'); 
+                    a=1;
+                }
+                console.log(a);
+            });
+
+            document.querySelector('.gallery-1_product').addEventListener('swiped-right', function(e) {
+                console.log(e.type);
+                console.log(e.target);
+                console.log(e.detail);
+                if (a==1){
+                    o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+                    o1.classList.add('gallery-1_product'); 
+                    a=0;
+                }
+                if (a==2){
+                    o1.classList.remove('gallery-1_product', 'gallery-2_product', 'gallery-3_product');
+                    o1.classList.add('gallery-2_product'); 
+                    a=1;
+                }
+                console.log(a);
+            });
+        }
+
+        //drag images phone
+        !function(t,e){
+            "use strict";
+            "function"!=typeof t.CustomEvent&&(t.CustomEvent=function(t,n){
+                n=n||{bubbles:!1,cancelable:!1,detail:void 0
+            };
+            var a=e.createEvent("CustomEvent");
+            return a.initCustomEvent(t,n.bubbles,n.cancelable,n.detail),a},
+                    t.CustomEvent.prototype=t.Event.prototype),
+            e.addEventListener("touchstart",function(t){
+                if("true"===t.target.getAttribute("data-swipe-ignore"))return;
+                s=t.target,r=Date.now(),n=t.touches[0].clientX,a=t.touches[0].clientY,u=0,i=0},!1),
+            e.addEventListener("touchmove",function(t){
+                if(!n||!a)
+                return;var e=t.touches[0].clientX,r=t.touches[0].clientY;u=n-e,i=a-r},!1),
+            e.addEventListener("touchend",function(t){if(s!==t.target)return;
+            var e=parseInt(l(s,"data-swipe-threshold","20"),10),
+                o=parseInt(l(s,"data-swipe-timeout","500"),10),c=Date.now()-r,
+                d="",
+                p=t.changedTouches||t.touches||[];
+                Math.abs(u)>Math.abs(i)?Math.abs(u)>e&&c<o&&(d=u>0?"swiped-left":"swiped-right"):Math.abs(i)>e&&c<o&&(d=i>0?"swiped-up":"swiped-down");
+                if(""!==d){
+                    var b={dir:d.replace(/swiped-/,""),
+                    xStart:parseInt(n,10),
+                    xEnd:parseInt((p[0]||{}).clientX||-1,10),
+                    yStart:parseInt(a,10),yEnd:parseInt((p[0]||{}).clientY||-1,10)};
+                    s.dispatchEvent(new CustomEvent("swiped",{bubbles:!0,cancelable:!0,detail:b})),
+                    s.dispatchEvent(new CustomEvent(d,{bubbles:!0,cancelable:!0,detail:b}))}n=null,a=null,r=null},!1);
+                    var n=null,a=null,u=null,i=null,r=null,s=null;
+                    function l(t,n,a){
+                        for(;t&&t!==e.documentElement;){
+                            var u=t.getAttribute(n);
+                            if(u)return u;t=t.parentNode
+                        }
+                        return a}}
+                        (window,document);
+        
+    },[])
   return (
         <div>
             <Nav/>
@@ -199,8 +293,6 @@ export default function Home({product}) {
                 </div>
             </div>
             <Footer/>
-            <Script type="text/javascript" src="/swiped-events.min.js"/>
-            <Script type="text/javascript" src="/product-js.js"/>
         </div>
     )
 }

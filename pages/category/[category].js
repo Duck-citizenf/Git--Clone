@@ -92,7 +92,6 @@ export default function gin({products}) {
             <div className="expander">
             </div>
             <Footer/>
-            <Script src='/getdata.js'/>
         </div>
     )
 }

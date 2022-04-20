@@ -4,7 +4,7 @@
     transform: translate(calc(var(--i, 0)/var(--n)*-100% + var(--tx, 0px)));
     position: relative;
 }
-.smooth { 
+.smooth_magazin { 
     transition: transform calc(var(--f, 1)*.5s) ease-out; 
 }
 .after:after{
@@ -275,7 +275,7 @@ h4{
     .container_magazin{
         transform: inherit;
     }
-    .smooth{
+    .smooth_magazin{
         transform: inherit;
     }
     .article-button-mobile{

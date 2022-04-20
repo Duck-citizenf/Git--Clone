@@ -1,9 +1,73 @@
 import Script from 'next/script'
+import { useEffect } from 'react'
 import Footer from '../Components/Footer'
 import Nav from '../Components/Nav'
 
 
 export default function Home() {
+    useEffect(()=>{
+        let counter = 0;
+        document.querySelector('.gallery__arrow').addEventListener('click', move1);
+        setInterval(move1, 3000);
+        var o3 = document.getElementById("o3");
+        function move1() {
+            o3.classList.remove('gallery-1', 'gallery-2', 'gallery-3');
+            if(counter == 0){
+                o3.classList.add('gallery-2');
+                counter = 1;
+            }
+            else if(counter == 1){
+                o3.classList.add('gallery-3');
+                counter = 2;
+            }
+            else if(counter == 2){
+                o3.classList.add('gallery');
+                counter = 0;
+            }
+        }
+
+        const _C = document.querySelector('.container'), 
+            N = _C.children.length;
+        let i = 0, x0 = null, locked = false, w;
+        function unify(e) {	return e.changedTouches ? e.changedTouches[0] : e };
+        function lock(e) {
+          x0 = unify(e).clientX;
+        	_C.classList.toggle('smooth', !(locked = true))
+        };
+        function drag(e) {
+        	e.preventDefault();
+        
+        	if(locked) 		
+        		_C.style.setProperty('--tx', `${Math.round(unify(e).clientX - x0)}px`)
+        };
+        function move(e) {
+          if(locked) {
+            let dx = unify(e).clientX - x0, s = Math.sign(dx), 
+        				f = +(s*dx/w).toFixed(2);
+            if((i > 0 || s < 0) && (i < N - 1 || s > 0)) {
+        			_C.style.setProperty('--i', i -= s);
+        			f = 1 - f
+        		}
+            
+            _C.style.setProperty('--tx', '0px');
+        		_C.style.setProperty('--f', f);
+            _C.classList.toggle('smooth', !(locked = false));
+            x0 = null
+          }
+        };
+        function size() { w = window.innerWidth };
+        size();
+        if (N!=null){
+            _C.style.setProperty('--n', N);
+        }
+        _C.addEventListener('resize', size, false);
+        _C.addEventListener('mousedown', lock, false);
+        _C.addEventListener('touchstart', lock, false);
+        _C.addEventListener('mousemove', drag, false);
+        _C.addEventListener('touchmove', drag, false);
+        _C.addEventListener('mouseup', move, false);
+        _C.addEventListener('touchend', move, false);
+    },[])
   return (
         <div>
             <Nav/>
@@ -302,9 +366,6 @@ export default function Home() {
                 </div>
             </div>
             <Footer/>
-            <Script type="text/javascript" src="/main-page-js.js"/>
-            <Script type="text/javascript" src="/swiped-events.min.js"/>
-            <Script type="text/javascript" src="/example/Script2.js"/>
         </div>
     )
 }
