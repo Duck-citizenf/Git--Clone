@@ -9,13 +9,7 @@ import {getAllProducts, getProduct, getProductsInCollection} from '../../lib/sho
 
 export default function gin({products}) {
     const {addToCart} = useContext(CartContext)
-//   const defaultValues = {}
-//   product.options.map(item => {
-//     defaultValues[item.name]=item.values[0]
-//   })
-
-//   const [selectedVariant, setSelectedVariant] = useState(allVariantsOptions[0])
-//   const [selectedOptions, setSelectedOptions] = useState(defaultValues)
+    console.log(products)
 
   return (
         <div>
@@ -47,7 +41,6 @@ export default function gin({products}) {
                     <div className="main__catalog">
                         <div className="text-center main__gin-row">
                             {products.map(product => {
-                                
                                 const selectedVariant = {id: product.node.variants.edges[0].node.id, variantQuantity: 1}
                                 return (
                                     <div className="relative main__in-img">
@@ -77,8 +70,8 @@ export default function gin({products}) {
                                         </a>
                                     </div>
                                     <div className="button">
-                                        {/* <button className="product1" onClick = {addToCart(selectedVariant)}> */}
-                                        <button className="product1">
+                                        {/* onClick = {addToCart(selectedVariant)} */}
+                                        <button className="product1" >
                                             In meinen Getränkekorb
                                         </button>
                                     </div>

@@ -14,7 +14,6 @@ export default function MiniCart({ cart }) {
     cart.map(item => {
       cartTotal += item?.variantPrice * item?.variantQuantity
     })
-    console.log(cart)
     return (
         <div className="relative header__minicart">
             <div className="header__platform-right">
