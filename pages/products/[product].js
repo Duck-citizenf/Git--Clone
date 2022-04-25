@@ -1,5 +1,4 @@
 import Image from 'next/image'
-import Script from 'next/script'
 import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
 import {useState, useContext, React, useEffect} from 'react'
@@ -193,8 +192,7 @@ export default function Home({product}) {
                                     <a className="amount_minus">-</a>
                                 </div>
                                 <div className="amount_button_container">
-                                    <button className="amount_button" onClick={()=>{addToCart(selectedVariant)}
-                                        }>
+                                    <button className="amount_button" onClick={()=>{addToCart(selectedVariant)}}>
                                         In meinen Getränkekorb
                                     </button>
                                 </div>

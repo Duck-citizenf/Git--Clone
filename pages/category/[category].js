@@ -2,15 +2,13 @@ import Link from 'next/link'
 import Image from 'next/image'
 import Footer from '../../Components/Footer'
 import Nav from '../../Components/Nav'
-import Script from 'next/script'
 import {useState, useContext} from 'react'
 import { CartContext } from '../../context/shopContext'
 import {getAllProducts, getProduct, getProductsInCollection} from '../../lib/shopify'
+import {allVariantsOptions, selectedVariant} from '../products/[product]'
 
 export default function gin({products}) {
     const {addToCart} = useContext(CartContext)
-    console.log(products)
-
   return (
         <div>
             <Nav/>
@@ -41,7 +39,14 @@ export default function gin({products}) {
                     <div className="main__catalog">
                         <div className="text-center main__gin-row">
                             {products.map(product => {
-                                const selectedVariant = {id: product.node.variants.edges[0].node.id, variantQuantity: 1}
+                                const selectedVariant = {
+                                    title: product.node.title,
+                                    handle: product.node.handle,
+                                    id: product.node.variants.edges[0].node.id,
+                                    image: product.node.images.edges[0].node.originalSrc,
+                                    variantPrice: product.node.priceRange.minVariantPrice.amount,
+                                    variantQuantity: 1
+                                }
                                 return (
                                     <div className="relative main__in-img">
                                     <Link href={`/products/${product.node.handle}`}>
@@ -70,14 +75,14 @@ export default function gin({products}) {
                                         </a>
                                     </div>
                                     <div className="button">
-                                        {/* onClick = {addToCart(selectedVariant)} */}
-                                        <button className="product1" >
+                                        {/*  */}
+                                        <button className="product1" onClick = {()=>{addToCart(selectedVariant)}}>
                                             In meinen Getränkekorb
                                         </button>
                                     </div>
                                 </div>
                                 )
-                        })}
+                            })}
                         </div>
                     </div>
                 </div>
