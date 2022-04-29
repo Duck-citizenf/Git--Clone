@@ -10,6 +10,18 @@ export default function MiniCart({ cart }) {
 
     const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext)
     
+    const countryData = [
+        { value: '1', name: '1' },
+        { value: '2', name: '2' },
+        { value: '3', name: '3' }, 
+        { value: '4', name: '4' }, 
+        { value: '5', name: '5' },            
+        { value: '6', name: '6' }, 
+        { value: '7', name: '7' },
+        { value: '8', name: '8' },
+        { value: '9', name: '9' },
+        { value: '10', name: '10' }
+    ]
     let cartTotal = 0
     cart.map(item => {
       cartTotal += item?.variantPrice * item?.variantQuantity
@@ -28,26 +40,14 @@ export default function MiniCart({ cart }) {
                                 <div className="flex header__basket-line">
                                     <div>
                                     <select>
-                                    <option>1</option>
-                                    <option>2</option>
-                                    <option>3</option>
-                                    <option>4</option>
-                                    <option>5</option>
-                                    <option>6</option>
-                                    <option>7</option>
-                                    <option>8</option>
-                                    <option>9</option>
-                                    <option>10</option>
-                                    <option>11</option>
-                                    <option>12</option>
-                                    <option>13</option>
-                                    <option>14</option>
-                                    <option>15</option>
-                                    <option>16</option>
-                                    <option>17</option>
-                                    <option>18</option>
-                                    <option>19</option>
-                                    <option>20</option>
+                                    {countryData.map((e, key) => {
+                                        if(e.value==product.variantQuantity){
+                                            return <option key={key} value={e.value} selected>{e.name}</option>;
+                                        }
+                                        else{
+                                            return <option key={key} value={e.value}>{e.name}</option>;
+                                        }   
+                                    })}
                                     </select>
                                     <span className='px-10 pointer font-22' onClick={() => removeCartItem(product.id)}>🗑</span>
                                     </div>
