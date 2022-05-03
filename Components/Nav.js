@@ -100,7 +100,6 @@ export default function Nav() {
                         <div className="flex page-top__search">SUCHE<img src="/images/like.png"/></div>
                     </div>
             </div>
-            <Script src='/getdata.js'/>
         </header>
     )
 }

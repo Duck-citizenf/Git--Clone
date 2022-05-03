@@ -8,7 +8,7 @@ import { CartContext } from '../context/shopContext'
 export default function MiniCart({ cart }) {
     const cancelButtonRef = useRef()
 
-    const { cartOpen, setCartOpen, checkoutUrl, removeCartItem } = useContext(CartContext)
+    const { cartOpen, setCartOpen, checkoutUrl, removeCartItem, addToCart } = useContext(CartContext)
     
     const countryData = [
         { value: '1', name: '1' },
@@ -22,6 +22,7 @@ export default function MiniCart({ cart }) {
         { value: '9', name: '9' },
         { value: '10', name: '10' }
     ]
+    
     let cartTotal = 0
     cart.map(item => {
       cartTotal += item?.variantPrice * item?.variantQuantity
@@ -39,13 +40,18 @@ export default function MiniCart({ cart }) {
                                 <a>{product.title}</a>
                                 <div className="flex header__basket-line">
                                     <div>
-                                    <select>
+                                    <select onChange={e=>{
+                                        addToCart({
+                                            id: product.id,
+                                            setVariantQuantity: event.target.value
+                                            })              
+                                        }}>
                                     {countryData.map((e, key) => {
                                         if(e.value==product.variantQuantity){
                                             return <option key={key} value={e.value} selected>{e.name}</option>;
                                         }
                                         else{
-                                            return <option key={key} value={e.value}>{e.name}</option>;
+                                            return <option key={key} value={e.value} >{e.name}</option>;
                                         }   
                                     })}
                                     </select>

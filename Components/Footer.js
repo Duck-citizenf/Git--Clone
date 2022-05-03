@@ -72,7 +72,6 @@ export default function Footer() {
             <div className="text-center copyright">
                 <a>© 2021 Honest &amp; Rare UG (haftungsbeschränkt)</a>
             </div>
-            <Script src="/style-remove.js"/>
         </div>
     )
 }
